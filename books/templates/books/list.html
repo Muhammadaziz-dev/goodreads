@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Books page{% endblock %}
+{% block content %}
+    <h1>Books</h1>
+{% if books %}
+
+    {% for book in books %}
+    <div class="row mb-4">
+        <div class="col-2">
+            <img src="{{ book.cover_picture.url }}" alt="">
+        </div>
+
+        
+
+        <div class="col-6 mb-4">
+             <a href="{% url 'books:detail' book.id %}">{{ book.title }}</a>
+
+            <p>
+                {{ book.description }}
+            </p>
+        </div>
+
+    </div>
+
+
+    {% endfor  %}
+
+        {% else %}
+            No books found.
+{% endif %}
+
+{% endblock %}
