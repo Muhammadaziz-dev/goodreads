@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block title %}Book detail{% endblock %}
 
 {% block content %}
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-2">
             <img src="{{ book.cover_picture.url }}" alt="cover image" class="cover-pic">
         </div>
@@ -17,8 +18,36 @@
 
     </div>
 
-    <img src="{{ book.cover_picture.url }}" alt="cover image" class="cover-pic">
+    <div class="row mb-4">
+        <div class="col-6">
+            <form method="post" action="{% url 'books:reviews' book.id %}">
+                {% csrf_token %}
 
-    </style>
+                {{ review_form | crispy }}
+
+                <button class="btn btn-success">Add review</button>
+            </form>
+
+        </div>
+    </div>
+    {% if book.bookreview_set.exists %}
+
+    {% endif %}
+    <h4>Reviews</h4>  <hr>
+
+    {% for review in book.bookreview_set.all  %}
+        <div class="row mb-3">
+            <div class="col-1 me-2">
+                <img class="small-profile-pic" src="{ review.user.profile_picture.url }}" alt="">
+            </div>
+            <div class="col-7">
+                <b>{{ review.user.username }}</b> rated {{ review.stars_given }} stars <span class="fw-lighter">{{ review.created_at }}</span>
+
+                <p class="mt-2 font-monospace">{{ review.comment }}</p>
+            </div>
+        </div>
+
+    {% endfor %}
+
 
 {% endblock %}
