@@ -1,5 +1,7 @@
 {% load static %}
-
+{% url 'home_page' as home_page_url %}
+{% url 'books:list' as books_page_url %}
+{% url 'users:profile' as profile_page_url %}
 
 <html lang="en">
 <head>
@@ -16,13 +18,16 @@
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'landing_page' %}">Goodreads</a>
 
-          <ul style=" list-style: none;
-          margin: 0;
-          padding: 0;">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'books:list' %}">Books</a>
-            </li>
-          </ul>
+           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == home_page_url %} active {% endif %} " aria-current="page" href="{{ home_page_url }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == books_page_url %} active {% endif %}" aria-current="page" href="{{ books_page_url }}">Books</a>
+        </li>
+      </ul>
+
+
           
 
             
@@ -39,11 +44,11 @@
               <ul class="navbar-nav">
         {% if request.user.is_authenticated %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {% if request.path == '/users/profile/' %} active {% endif %}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ user.username }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ profile_page_url }}">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a></li>
                         </ul>

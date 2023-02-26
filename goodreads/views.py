@@ -1,4 +1,7 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
+
+from books.models import BookReview
 
 
 def landing_page(request):
@@ -6,4 +9,11 @@ def landing_page(request):
 
 
 def home_page(request):
-    return render(request, "home.html")
+    book_review = BookReview.objects.all().order_by('-created_at')
+    page_size = request.GET.get('page_size', 10)
+    paginator = Paginator(book_review, 10)
+
+    page_num = request.GET.get('page', 1)
+    page_object = paginator.get_page(page_num)
+
+    return render(request, "home.html", {"page_obj": page_object})

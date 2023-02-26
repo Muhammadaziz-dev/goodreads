@@ -58,10 +58,13 @@ class BooksTestCase(TestCase):
 
 class BookReviewTestCase(TestCase):
     def test_add_review(self):
-        book = Book.objects.create(title="Book1", description="Description")
-        user = CustomUser.objects.create(username="jahongir", first_name="Jahongir", email="")
+        book = Book.objects.create(title="Book1", description="Description1", isbn="123121")
+        user = CustomUser.objects.create(
+            username="jakhongir", first_name="Jakhongir", last_name="Rakhmonov", email="jrahmonov2@gmail.com"
+        )
         user.set_password("somepass")
         user.save()
+        self.client.login(username="jakhongir", password="somepass")
 
         self.client.post(reverse("books:reviews", kwargs={"id": book.id}), data={
             "stars_given": 3,
@@ -74,4 +77,3 @@ class BookReviewTestCase(TestCase):
         self.assertEqual(book_reviews[0].comment, "Nice book")
         self.assertEqual(book_reviews[0].book, book)
         self.assertEqual(book_reviews[0].user, user)
-
