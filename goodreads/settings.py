@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #creted apps
+    #created apps
     'books',
     'users',
+    'api',
     # installed apps
     "crispy_forms",
     "crispy_bootstrap5",
+    'rest_framework',
 
 ]
 
@@ -149,13 +151,18 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 2
+}
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'baxtiyorovmuhammadaziz6@gmail.com'
-EMAIL_HOST_PASSWORD = 'muhammadazizisphone712148569'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'baxtiyorovmuhammadaziz6@gmail.com'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
 # email ishlamidi chunki google buni xavfsizmas db yorgani uchun
 # 2022 yildan ob tashashibdi shuni uchun ishlamidi
