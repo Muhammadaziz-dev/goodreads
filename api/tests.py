@@ -29,8 +29,6 @@ class BookReviewAPITestCase(APITestCase):
         self.assertEqual(response.data['user']['first_name'], "Jahongir")
         self.assertEqual(response.data['user']['username'], "jahongir")
 
-
-
     def test_book_review_list(self):
         user_two = CustomUser.objects.create(username="somebody", first_name="Somebody")
         book = Book.objects.create(title="Book1", description="Description1", isbn="123123")

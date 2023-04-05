@@ -77,5 +77,3 @@ class BookReviewTestCase(TestCase):
         self.assertEqual(book_reviews[0].comment, "Nice book")
         self.assertEqual(book_reviews[0].book, book)
         self.assertEqual(book_reviews[0].user, user)
-
-
