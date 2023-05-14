@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-pfnsk@)vi(%bhh*qyh0p($$b2y%qaip#0$_za(#oayh_%ui+!u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://web-production-23d23.up.railway.app/',
+                 'www.https://web-production-23d23.up.railway.app/']
 
 LOGIN_URL = "users:login"
 
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #created apps
+    # created apps
     'books',
     'users',
     'api',
