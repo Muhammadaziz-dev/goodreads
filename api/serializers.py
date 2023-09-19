@@ -28,3 +28,23 @@ class BookReviewSerializer(serializers.ModelSerializer):
         fields = ('id', 'stars_given', 'comment', 'book', 'user', 'user_id', 'book_id')
 
 
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'profile_picture', 'phone_number']
+
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'password', 'phone_number')
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(**validated_data)
+        return user
+
+
+class UserLoginSerializer(serializers.Serializer):
+    username_or_email_or_phone = serializers.CharField(max_length=150, required=True)
+    password = serializers.CharField(write_only=True, required=True)

@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-pfnsk@)vi(%bhh*qyh0p($$b2y%qaip#0$_za(#oayh_%ui+!u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://web-production-23d23.up.railway.app/',
-                 'www.https://web-production-23d23.up.railway.app/']
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = "users:login"
 
@@ -104,7 +103,7 @@ DATABASES = {
     }
 }
 
-
+SESSION_COOKIE_AGE = 604800
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
