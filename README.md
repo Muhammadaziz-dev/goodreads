@@ -82,3 +82,7 @@ celery -A goodreads worker --loglevel=info
 
 If you have periodic tasks (e.g., daily notifications), you can run the Celery Beat scheduler:
 celery -A goodreads beat --loglevel=info
+
+and run the
+python manage.py test
+command
